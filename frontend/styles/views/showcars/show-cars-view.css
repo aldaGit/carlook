@@ -1,0 +1,27 @@
+.show-cars-view {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 var(--lumo-space-l);
+}
+.show-cars-view vaadin-grid-pro {
+  height: 100%;
+}
+.show-cars-view vaadin-grid-filter,
+.show-cars-view vaadin-grid-filter > * {
+  width: 100%;
+}
+.show-cars-view vaadin-grid-pro vaadin-horizontal-layout {
+  align-items: center;
+}
+.show-cars-view vaadin-grid-pro img {
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: var(--lumo-size-m);
+  width: var(--lumo-size-m);
+}
+.show-cars-view .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
