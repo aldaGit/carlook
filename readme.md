@@ -56,9 +56,9 @@ User 'Ingo' (Einfacher User):
 - Password: abc
 
 ### FAQ // Tipps und Tricks 
-* die Java 11 JDk kann [hier](https://www.oracle.com/de/java/technologies/javase-jdk11-downloads.html) als .zip heruntergeladen werden (u.U. muss ein kostenloser Oracle-Account erstellt werden). JDK entpacken, an gewünschtem Ort ablegen und in Intellij unter File>Project Structure auf den Button 'New' klicken und auf '+JDK'. Dann den entpackten JDK-11-Ordner auswählen. 
+* die Java 11 JDK kann [hier](https://www.oracle.com/de/java/technologies/javase-jdk11-downloads.html) als .zip heruntergeladen werden (u.U. muss ein kostenloser Oracle-Account erstellt werden). JDK entpacken, an gewünschtem Ort ablegen und in Intellij unter File>Project Structure auf den Button 'New' klicken und auf '+JDK'. Dann den entpackten JDK-11-Ordner auswählen. 
 * Wenn spring-boot:run fehlschlägt/ die Anwendung unter localhost:8080 nicht zu erreichen ist: 
-  * Fehler anzeigen: Im Run-Tab am unteren Rand der Anwendung, im rechten Bereich auf "run" klicken
+  * Fehler anzeigen: Im Run-Tab am unteren Rand der Anwendung, im linken Bereich auf den vorletzten Eintrag im Menü-Baum mit den roten Ausrufezeichen auf "run" klicken
   * Mögliche Fehler:
     * Die Datenbank-Verbindung zur PostgreSQL schlägt fehl. Darauf hinweisende Fehler (evtl. etwas hochscrollen/suchen) wären z.B.: ``org.postgresql.util.PSQLException: Der  Verbindungsversuch schlug fehl. at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:315) ~[postgresql-42.2.18.jar:42.2.18]``, ``j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]``
   * Mögliche Lösungen: 
