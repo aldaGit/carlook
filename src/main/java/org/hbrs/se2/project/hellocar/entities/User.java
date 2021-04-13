@@ -21,6 +21,7 @@ public class User {
     private List<Rolle> roles;
 
     @Id
+    @GeneratedValue
     @Column(name = "id")
     public int getId() {
         return id;
@@ -132,7 +133,10 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_to_rolle", catalog = "demouser", schema = "carlook", joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "bezeichnung", referencedColumnName = "bezeichhnung", nullable = false))
+    @JoinTable(name = "user_to_rolle", catalog = "demouser",
+            schema = "carlook",
+            joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "bezeichnung", referencedColumnName = "bezeichhnung", nullable = false))
     public List<Rolle> getRoles() {
         return roles;
     }

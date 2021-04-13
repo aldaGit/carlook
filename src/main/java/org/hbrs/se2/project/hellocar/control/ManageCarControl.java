@@ -1,6 +1,5 @@
 package org.hbrs.se2.project.hellocar.control;
 
-import org.hbrs.se2.project.hellocar.control.exception.DatabaseException;
 import org.hbrs.se2.project.hellocar.control.factories.CarFactory;
 import org.hbrs.se2.project.hellocar.dtos.CarDTO;
 import org.hbrs.se2.project.hellocar.dtos.UserDTO;
@@ -27,7 +26,7 @@ public class ManageCarControl {
         //Erzeuge ein neues Car-Entity konsistent über eine Factory
         Car carEntity = CarFactory.createCar(  carDTO , userDTO  );
 
-        // Abspeicherung des Entity
+        // Abspeicherung des Entity in die DB
         this.repository.save( carEntity );
     }
 

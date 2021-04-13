@@ -34,22 +34,19 @@ import java.util.Optional;
  */
 @CssImport("./styles/views/main/main-view.css")
 @Route("main")
-@PWA(name = "MyCar", shortName = "MyCar", enableInstallPrompt = false)
+@PWA(name = "HelloCar", shortName = "HelloCar", enableInstallPrompt = false)
 @JsModule("./styles/shared-styles.js")
-public class AppView extends AppLayout implements BeforeEnterListener {
+public class AppView extends AppLayout implements BeforeEnterObserver {
 
-    private  Tabs menu;
+    private Tabs menu;
     private H1 viewTitle;
     private H1 helloUser;
 
-    // @Autowired
     private AuthorizationControl authorizationControl;
 
     public AppView() {
-        System.out.println("LOG: in Constructor");
         if (getCurrentUser() == null) {
-            System.out.println("LOG: in Constructor, Navigation");
-            UI.getCurrent().navigate(MainView.class);
+            System.out.println("LOG: In Constructor of App View - No User given!");
         } else {
             setUpUI();
         }
@@ -64,11 +61,9 @@ public class AppView extends AppLayout implements BeforeEnterListener {
 
     private boolean checkIfUserIsLoggedIn() {
         // Falls der Benutzer nicht eingeloggt ist, dann wird er auf die Startseite gelenkt
-        System.out.println("Current User: " +  getCurrentUser() );
         UserDTO userDTO = this.getCurrentUser();
         if (userDTO == null) {
             UI.getCurrent().navigate(Globals.Pages.LOGIN_VIEW);
-            System.out.println("Navigation ausgeführt!");
             return false;
         }
         return true;
@@ -87,8 +82,6 @@ public class AppView extends AppLayout implements BeforeEnterListener {
         viewTitle = new H1();
         viewTitle.setWidthFull();
         layout.add( viewTitle );
-        // layout.add( new Button("Logout"));
-        // layout.add(new Avatar());
 
         HorizontalLayout topRightPanel = new HorizontalLayout();
         topRightPanel.setWidthFull();
@@ -121,11 +114,12 @@ public class AppView extends AppLayout implements BeforeEnterListener {
         layout.setSpacing(false);
         layout.getThemeList().set("spacing-s", true);
         layout.setAlignItems(FlexComponent.Alignment.STRETCH);
+
         HorizontalLayout logoLayout = new HorizontalLayout();
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "MyCar logo"));
-        logoLayout.add(new H1("MyCar"));
+        logoLayout.add(new Image("images/logo.png", "HelloCar logo"));
+        logoLayout.add(new H1("HelloCar"));
         layout.add(logoLayout, menu);
         return layout;
     }
@@ -166,7 +160,6 @@ public class AppView extends AppLayout implements BeforeEnterListener {
     @Override
     protected void afterNavigation() {
         super.afterNavigation();
-        System.out.println("LOG: in afterNavigation");
 
         // Falls der Benutzer nicht eingeloggt ist, dann wird er auf die Startseite gelenkt
         if ( !checkIfUserIsLoggedIn() ) return;
@@ -199,11 +192,19 @@ public class AppView extends AppLayout implements BeforeEnterListener {
         return (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
     }
 
+
     @Override
+    /**
+     * Methode wird vor der eigentlichen Darstellung der UI-Components aufgerufen.
+     * Hier kann man die finale Darstellung noch abbrechen, wenn z.B. der Nutzer nicht eingeloggt ist
+     * Dann erfolgt hier ein ReDirect auf die Login-Seite. Eine Navigation (Methode navigate)
+     * ist hier nicht möglich, da die finale Navigation noch nicht stattgefunden hat.
+     *
+     */
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        System.out.println("LOG: in beforeEnter");
-        if (getCurrentUser() == null) {
-            beforeEnterEvent.forwardTo(MainView.class);
+        if (getCurrentUser() == null){
+            beforeEnterEvent.rerouteTo(Globals.Pages.LOGIN_VIEW);
         }
+
     }
 }

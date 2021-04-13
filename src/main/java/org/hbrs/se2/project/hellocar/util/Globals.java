@@ -19,4 +19,10 @@ public class Globals {
 
     }
 
+    public static class Errors {
+        public static final String NOUSERFOUND = "nouser";
+        public static final String SQLERROR = "sql";
+        public static final String DATABASE = "database";
+    }
+
 }

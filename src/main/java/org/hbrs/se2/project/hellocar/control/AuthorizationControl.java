@@ -11,6 +11,10 @@ import java.util.List;
 // @Component
 public class AuthorizationControl {
 
+    /**
+     * Methode zur Überprüfung, ob ein Benutzer eine gegebene Rolle besitzt
+     * 
+     */
     public boolean isUserInRole(UserDTO user , String role  ) {
         List<RolleDTO> rolleList = user.getRoles();
         // A bit lazy but hey it works ;-)
@@ -24,11 +28,6 @@ public class AuthorizationControl {
      * Erweiterte Methode zur Bestimmung, ob ein User mit einer bestimmten Rolle ein
      * Feature (hier: ein Web-Seite bzw. eine View) zu einem bestimmten Kontext (Bsp: ein Tageszeit, mit
      * einem bestimmten Device etc.) angezeigt bekommt
-     * @param user
-     * @param role
-     * @param feature
-     * @param context
-     * @return
      */
     public boolean isUserisAllowedToAccessThisFeature(UserDTO user , String role , String feature , String[] context  ) {
         List<RolleDTO> rolleList = user.getRoles();

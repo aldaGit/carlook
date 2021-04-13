@@ -1,13 +1,16 @@
-package org.hbrs.se2.project.hellocar;
+package org.hbrs.se2.project.hellocar.test;
 
+import org.hbrs.se2.project.hellocar.dao.UserDAO;
 import org.hbrs.se2.project.hellocar.dtos.CarDTO;
 import org.hbrs.se2.project.hellocar.dtos.RolleDTO;
 import org.hbrs.se2.project.hellocar.dtos.UserDTO;
 import org.hbrs.se2.project.hellocar.entities.Rolle;
 import org.hbrs.se2.project.hellocar.entities.User;
 import org.hbrs.se2.project.hellocar.repository.CarRepository;
-import org.hbrs.se2.project.hellocar.repository.RoleRepository;
+import org.hbrs.se2.project.hellocar.repository.RolleRepository;
 import org.hbrs.se2.project.hellocar.repository.UserRepository;
+import org.hbrs.se2.project.hellocar.services.db.exceptions.DatabaseLayerException;
+import org.hbrs.se2.project.hellocar.util.Utils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,23 +19,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 @SpringBootTest
 class HellocarApplicationTests {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RolleRepository roleRepository;
 
     @Autowired
     private CarRepository carRepository;
 
     @Test
     void testRolesOfUser() {
-        Optional<User> wrapper = repository.findById(1);
+        Optional<User> wrapper = userRepository.findById(1);
         if ( wrapper.isPresent() ) {
             User user = wrapper.get();
             System.out.println("User: " + user.getLastName());
@@ -45,7 +50,7 @@ class HellocarApplicationTests {
 
     @Test
     void testUserDTOByAttribute() {
-        UserDTO personDTO = repository.getUserByOccupation("Professor").get(0);
+        UserDTO personDTO = userRepository.getUserByOccupation("Professor").get(0);
         System.out.println(personDTO.getFirstName());
         assertEquals("Sascha", personDTO.getFirstName());
         assertEquals(1 , personDTO.getId());
@@ -53,14 +58,14 @@ class HellocarApplicationTests {
 
     @Test
     void testUserDTOByPassword() {
-        UserDTO userDTO = repository.findUserByUseridAndPassword("sascha" , "abc").get(0);
+        UserDTO userDTO = userRepository.findUserByUseridAndPassword("sascha" , "abc");
         System.out.println(userDTO.getFirstName());
         assertEquals("Sascha", userDTO.getFirstName());
     }
 
     @Test
     void testUserDTOAndItsRoles() {
-        UserDTO userDTO = repository.findUserByUseridAndPassword("sascha" , "abc").get(0);
+        UserDTO userDTO = userRepository.findUserByUseridAndPassword("sascha" , "abc");
         System.out.println(userDTO.getFirstName());
         assertEquals("Sascha", userDTO.getFirstName());
         List<RolleDTO> list = userDTO.getRoles();
@@ -70,7 +75,7 @@ class HellocarApplicationTests {
 
     @Test
     void testPersonLoad() {
-        Optional<User> wrapper = repository.findById(1);
+        Optional<User> wrapper = userRepository.findById(1);
         if ( wrapper.isPresent() ) {
             User user = wrapper.get();
             assertEquals("Alda" , user.getLastName());
@@ -79,10 +84,15 @@ class HellocarApplicationTests {
 
     @Test
     void testRoleRepository() {
-        List<Rolle> list = roleRepository.findByBezeichhnung();
-        for (Rolle r: list) {
+        List<Rolle> list = roleRepository.findAll();
+        String[] soll = { "admin" , "user" };
+        String[] ist = {};
+
+        for (Rolle r : list) {
             System.out.println("Rolle: " + r.getBezeichhnung() );
+            ist = Utils.append( ist , r.getBezeichhnung() );
         }
+        assertArrayEquals( soll , ist );
     }
 
     @Test
@@ -95,6 +105,7 @@ class HellocarApplicationTests {
             System.out.println("First Name: " + item[3] );
             System.out.println("Last Name: " + item[4] );
         }
+        // Todo: Definition von passenden Assertions
     }
 
     @Test
@@ -106,6 +117,21 @@ class HellocarApplicationTests {
             System.out.println("Price: " + item.getPrice() );
             System.out.println("Phone: " + item.getPhone() );
         }
+        // Todo: Definition von passenden Assertions
+    }
+
+    @Test
+    void testFindUserWithJDBC() {
+        UserDAO userDAO = new UserDAO();
+        try {
+            UserDTO userDTO = userDAO.findUserByUseridAndPassword("sascha" , "abc");
+            System.out.println(userDTO.toString());
+
+            assertEquals("Sascha", userDTO.getFirstName());
+        } catch (DatabaseLayerException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -19,13 +19,6 @@ import java.util.List;
  * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods
  *
  */
-public interface RoleRepository extends JpaRepository<Rolle, Integer> {
-
-    @Query("SELECT r FROM Rolle r where r.bezeichhnung = 'admin'")
-    List<Rolle> findByBezeichhnung();
-
-
-
-
+public interface RolleRepository extends JpaRepository<Rolle, Integer> {
 
 }

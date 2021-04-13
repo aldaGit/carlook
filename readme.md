@@ -1,10 +1,12 @@
-# User Manual CarLook
+# User Manual HelloCar
 
 ### Inhaltsverzeichnis
 
 [Motivation](#motivation)<br>
 [Installation](#installation)<br>
+[Tipps und Tricks](#tipps-und-tricks)<br>
 [Hilfreiche Links](#hilfreiche-links)<br>
+
 
 
 ### Motivation
@@ -55,9 +57,10 @@ User 'Ingo' (Einfacher User):
 - Login: ingo
 - Password: abc
 
-### FAQ // Tipps und Tricks 
-* die Java 11 JDK kann [hier](https://www.oracle.com/de/java/technologies/javase-jdk11-downloads.html) als .zip heruntergeladen werden (u.U. muss ein kostenloser Oracle-Account erstellt werden). JDK entpacken, an gewünschtem Ort ablegen und in Intellij unter File>Project Structure auf den Button 'New' klicken und auf '+JDK'. Dann den entpackten JDK-11-Ordner auswählen. 
-* Wenn spring-boot:run fehlschlägt/ die Anwendung unter localhost:8080 nicht zu erreichen ist: 
+### Tipps und Tricks 
+Die Java 11 JDK kann [hier](https://www.oracle.com/de/java/technologies/javase-jdk11-downloads.html) als .zip heruntergeladen werden (u.U. muss ein kostenloser Oracle-Account erstellt werden). JDK entpacken, an gewünschtem Ort ablegen und in Intellij unter File>Project Structure auf den Button 'New' klicken und auf '+JDK'. Dann den entpackten JDK-11-Ordner auswählen. 
+<br>
+Wenn spring-boot:run fehlschlägt/ die Anwendung unter localhost:8080 nicht zu erreichen ist: 
   * Fehler anzeigen: Im Run-Tab am unteren Rand der Anwendung, im linken Bereich auf den vorletzten Eintrag im Menü-Baum mit den roten Ausrufezeichen auf "run" klicken
   * Mögliche Fehler:
     * Die Datenbank-Verbindung zur PostgreSQL schlägt fehl. Darauf hinweisende Fehler (evtl. etwas hochscrollen/suchen) wären z.B.: ``org.postgresql.util.PSQLException: Der  Verbindungsversuch schlug fehl. at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:315) ~[postgresql-42.2.18.jar:42.2.18]``, ``j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]``
@@ -66,30 +69,94 @@ User 'Ingo' (Einfacher User):
     * In den Sicherheitseinstellungen des Betriebsystems gucken, ob IntelliJ bzw. Java11 die  Rechte haben, durch die Firewall nach außen zu kommunizieren und evtl. ändern
 
 ### Hilfreiche Links
-For further reference, please consider the following sections:
+Diese Links soll eine Unterstützung bieten bei der prototypischen Umsetzung des Semesterprojekts mit den Frameworks
+Vaadin und Spring Boot sowie mit Spring / JPA. Diese Links werden sporadisch erweitert, es lohnt sich also, dieses
+Readme regelmäßig zu aktualisieren (git pull). 
 
-@Table( name ="user" , schema = "carlook" )
 
-Überblick über CSS
+#### Überblick über CSS
+Das Thema CSS wird in der Vorlesung nur am Rande eingeführt. Dennoch sollten die Teams sich bemühen, ihre Software
+mit CSS entsprechend visuell aufzubearbeiten.
 
+Hier ein Link guter zur Erläuterung der Flex-Box-Technologie, die verwendet wird, um Elemente in einem HTML-Dokument
+visuelle anzuordnen.
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
+#### JPA (Java Persitence API)
+In dieser Anwendung wird der Standard JPA verwendet, um von einer objektorientierten Anwendung auf eine relationalen 
+Datenbank (hier: eine Datenbank aus dem DBMS PostgreSQL) zuzugreifen. JPA stellt die Verbindung zur Datenbank her
+und führt nach den Queries und Inserts (etc.) das notwendige Object-Relational-Mapping (ORM) durch. Hier eine erste
+Einführung:<br>
+https://spring.io/guides/gs/accessing-data-jpa/ 
+
+Ein grundlegendes in SQL ist die Projection von Relation über den Befehl SELECT. In JPA wird dies über DTOs geregelt, wobei
+die Attribute in einem DTO die Projectionsattribute darstellen. Eine gute Einführung gibt es hier: 
 https://www.baeldung.com/spring-data-jpa-projections
 
-https://stackoverflow.com/questions/20735205/launching-spring-application-address-already-in-use
-
-https://nanofaroque.medium.com/nullpointerexception-resolution-in-spring-autowiring-9db09aefcab
-
+Auch wenn mit den Standard-Queries von JPA viele Dinge bereits abgefagt werden können, so sind für einige Szenarien
+oftmals komplexere Queries notwendig. Diese Queries funktionieren in JPA ähnlich wie in SQL, jedoch bauen diese
+dann im FROM-Teil auf Klassen und nicht auf Relationen / Tabellen auf. Eine gute Einführung in die Thematik findet sich hier:
 https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods
 
-Erklärung der Werte für DDL-Erzeugung:
-
+In JPA kann ein Schema aus einer Datenbank mit einem objektorientierten Entity-Schema abgeglichen werden. Die
+Semantik dieses Abgleichs kann man in der Datei 'application.properties' unter der Variable 'spring.jpa.hibernate.ddl-auto'
+setzen. Die verschiedenen Optionen werden hier gut beschrieben:
 https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
 
+In dem Framework ist diese Variable auf 'none' gesetzt. Bei der Bereitstellung einer neuen Datenbank kann durch Zuweisung
+der Varibale auf den Wert 'create' das objektorientierte Schema unmittelbar in die Datenbank kopiert werden. 
+
+#### Spring Dependency Injection
+Die Verbindung von Objekten mit der Annotation @Autowired wirkt bequem, es gibt aber einige Dinge, die man beachten muss. 
+Hier eine gute Zusammenfassung mit einigen Fallstricken: 
+https://nanofaroque.medium.com/nullpointerexception-resolution-in-spring-autowiring-9db09aefcab
+
+#### Vaadin
+Eine gute Einführung in Vaadin bietet die [offizielle Dokumentation von Vaadin](https://vaadin.com/). In der Vorlesung wird Vaadin 14 
+verwendet. Ein Überblick über die aktuellen Versionen gibt es hier:<br>
+https://vaadin.com/start#tech-stack-examples
+
+Ein gutes Tutorial mit den grundlegenden Features von Vaadin (Flow) 14:<br>
+https://vaadin.com/docs/v14/flow/overview
+
+Hier ein guter Überblick über die UI-Components, die man verwenden kann:<br>
+https://vaadin.com/components
+
+Vaadin bietet über die Technologie "Flow" die Möglichkeit an, eine Web-Anwendung rein in der Sprache Java zu entwickeln.
+Diese Variante wird in der Vorlesung SE-2 (BWI) eingeführt und verwendet. Ein guter Überblick:<br>
+https://vaadin.com/flow
+
+Die kommerziellen Produkte zu Vaadin (u.a. den [Vaadin Designer](https://vaadin.com/designer), [Pro Components](https://vaadin.com/components/vaadin-board)) erhalten sie über eine Lizenz, die allerdin
+sehr teuer ist. Als Student erhalten sie jedoch einen freien Zugang, den es sich lohnt anzuschauen:<br>
+https://vaadin.com/student-program
+
+In der offiziellen Abgabe des Semesterprojekt sind allerdings nur die freien UI-Components zu verwenden! 
+
+Der Web-Designer bietet die Möglichkeit, eine Web-Anwendung flexibel in einem Browser zusammenzubauen und zu konfigurieren. 
+Im Anschluss kann die Anwendung als "Rumpf" heruntergeladen werden:<br>
+https://start.vaadin.com/
+
+Der Router-Mechanismus wird verwendet, um zwischen diversen Views zu navigieren. Eine Einleitung dazu gibt es hier:<br>
 https://vaadin.com/docs/v14/flow/routing/tutorial-router-layout.html
 
+Bei der Ausführung bzw. Start eines Tomcat-Servers kann es passieren, dass der Netzwerk-Port schon belegt ist mit einer
+laufnenden Instanz. Dann sollte man diese Instanz löschen, eine Anleitung gibt es hier:<br>
+https://stackoverflow.com/questions/20735205/launching-spring-application-address-already-in-use 
 
-* [Creating CRUD UI with Vaadin](https://spring.io/guides/gs/crud-with-vaadin/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Using Spring Data JDBC](https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/basics)
+
+####PostgreSQL
+Eine Übersicht über die implementierten SQL-Befehle bei PostgreSQL gibt es hier:<br>
+https://www.postgresql.org/docs/12/sql-commands.html
+
+Ein gutes Web-Tool zur Erstellung von Tabellen, Schemas usw. ist das Tool PhpPGAdmin. Dieses ist bei uns auch 
+betrieben, jedes Team bekommt dazu einen eigenen Zugriff (Login, Password). Dazu bitte eine E-Mail schreiben an mich 
+(sascha.alda@h-brs.de). Link dazu:<br>
+https://dumbo.inf.h-brs.de/phppgadmin/
+
+Hinweis: der Zugriff auf die Datenbank ist nur mit einer gültigen VPN-Verbindung möglich!
+
+
+
+
+
 
