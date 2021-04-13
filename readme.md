@@ -141,10 +141,13 @@ https://vaadin.com/docs/v14/flow/routing/tutorial-router-layout.html
 
 Bei der Ausführung bzw. Start eines Tomcat-Servers kann es passieren, dass der Netzwerk-Port schon belegt ist mit einer
 laufnenden Instanz. Dann sollte man diese Instanz löschen, eine Anleitung gibt es hier:<br>
-https://stackoverflow.com/questions/20735205/launching-spring-application-address-already-in-use 
+https://stackoverflow.com/questions/20735205/launching-spring-application-address-already-in-use
+
+Sie brauchen einen Dialog z.B. zur Bestätigung einer Aktion über Buttons? Dann schauen sie sich mal Dialogs an:<br>
+https://vaadin.com/components/vaadin-dialog 
 
 
-####PostgreSQL
+#### PostgreSQL
 Eine Übersicht über die implementierten SQL-Befehle bei PostgreSQL gibt es hier:<br>
 https://www.postgresql.org/docs/12/sql-commands.html
 
