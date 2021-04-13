@@ -8,24 +8,29 @@
         <version>2.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>org.hbrs.se2.project</groupId>
     <artifactId>hellocar</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>hellocar</name>
     <description>Demo project for SE-2</description>
+
     <properties>
         <java.version>11</java.version>
         <vaadin.version>14.4.7</vaadin.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
@@ -48,7 +53,9 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
