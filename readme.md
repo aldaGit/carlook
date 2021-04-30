@@ -6,7 +6,7 @@
 [Installation](#installation)<br>
 [Tipps und Tricks](#tipps-und-tricks)<br>
 [Hilfreiche Links](#hilfreiche-links)<br>
-
+[Video-Tutorien](#links-zu-video-tutorien)<br>
 
 
 ### Motivation
@@ -158,8 +158,25 @@ https://dumbo.inf.h-brs.de/phppgadmin/
 
 Hinweis: der Zugriff auf die Datenbank ist nur mit einer gültigen VPN-Verbindung möglich!
 
+#### Links zu Video-Tutorien
+Eine ausführliche Einleitung in diese Anwendung erfolgt in einem Video-Tutorium, welches auf YouTube abrufbar ist:<br>
 
+[1. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=XnvjqxhCxA0)
+<br>
+(Installation der Anwendung aus GitHub; Demo der Anwendung; erste Einführung Maven Goals und Plugins)
 
+[2. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=-Zev_pxh_po)
+<br>
+(Vorstellung Software-Architektur (Java und Modell, Layer Architecture); Einführung in Vaadin, LoginForm, Code-Walkthrough (LoginView, LoginControl, DAOs, JDBCController); Einführung JDBC; Einführung PostgreSQL (Installation auf Dumbo); Tool PhpPGAdmin)
 
+[3. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=j1_6cW-EckY)
+<br>
+(Einführung Spring JPA ; Entities und Tabellen; CRUD-Operationen; komplexe Queries; Präsentation JUnit-Test, Round-Trip-Test; Konfiguration JPA; Anpassung LoginControl, Demo mit JPA)
 
+[4. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=6FChU4IrUO8)
+<br>
+(Vertiefung JPA; Entwicklung von Entities über IntelliJ (Persistence-View); Abbildungen von Spalten auf Attribute; Abbildung von n:m-Beziehungen; Einrichtung einer als Datenbank als DataSource in IntelliJ)
 
+[5. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=Y_s7bu1V3DU)
+<br>
+(Einführung in Maven (Default Build Lifecycle, Phasen, Goals, Plugins), POM-File; Konfiguration in IntelliJ)
