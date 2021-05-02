@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-
+@Controller
 @SpringBootApplication
 public class HellocarApplication extends SpringBootServletInitializer {
     //public class HellocarApplication {
