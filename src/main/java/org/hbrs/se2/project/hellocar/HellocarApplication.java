@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.stereotype.Controller;
 
-@Controller
+//@Controller
 @SpringBootApplication
 public class HellocarApplication extends SpringBootServletInitializer {
     //public class HellocarApplication {
