@@ -19,7 +19,6 @@
     <properties>
         <java.version>11</java.version>
         <vaadin.version>14.4.7</vaadin.version>
-<!--         <tomcat.version>8.5.30</tomcat.version> -->
     </properties>
 
     <dependencies>
@@ -53,14 +52,14 @@
         <artifactId>spring-boot-starter-tomcat</artifactId>
         <scope>provided</scope>
       </dependency>
-<!--        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
--->
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -149,15 +148,6 @@
                 </plugins>
             </build>
 
-            <executions>
-             <execution>
-               <goals>
-                 <goal>build-frontend</goal>
-               </goals>
-               <phase>compile</phase>
-             </execution>
-            </executions>
-            
         </profile>
     </profiles>
 
