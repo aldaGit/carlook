@@ -116,7 +116,10 @@
 
     <profiles>
         <profile>
-            <id>production</id>
+          <id>production</id>
+          <activation>
+            <activeByDefault>true</activeByDefault>
+          </activation>
             <build>
               <plugins>
                     <plugin>
