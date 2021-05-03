@@ -123,8 +123,6 @@
               </pluginManagement>
 
               <plugins>
-
-                             <plugins>
               <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -152,8 +150,7 @@
                     </goals>
                   </execution>
                 </executions>
-              </plugin>
-              
+              </plugin>\
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>vaadin-maven-plugin</artifactId>
