@@ -154,19 +154,18 @@
                 <plugin>
                   <groupId>org.sonarsource.scanner.maven</groupId>
                   <artifactId>sonar-maven-plugin</artifactId>
-                  <!-- <version>3.7.0.1746</version> -->
                   <version>3.9.0.2155</version>
                 </plugin>
                 
                 <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-surefire-plugin</artifactId>
-                  <!-- <version>2.22.2</version>  -->
                   <version>3.0.0-M5</version>                 
                 </plugin>
                 
               </plugins>
             </pluginManagement>
+            
             <plugins>
               <plugin>
                 <groupId>org.jacoco</groupId>
