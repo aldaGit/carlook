@@ -110,9 +110,9 @@
     <profiles>
         <profile>
           <id>production</id>
-          <activation>
+<!--          <activation>
             <activeByDefault>true</activeByDefault>
-          </activation>
+          </activation> -->
             <build>
               <plugins>
                     <plugin>
