@@ -199,6 +199,8 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
      * Hier kann man die finale Darstellung noch abbrechen, wenn z.B. der Nutzer nicht eingeloggt ist
      * Dann erfolgt hier ein ReDirect auf die Login-Seite. Eine Navigation (Methode navigate)
      * ist hier nicht möglich, da die finale Navigation noch nicht stattgefunden hat.
+     * Diese Methode in der AppLayout sichert auch den un-authorisierten Zugriff auf die innerliegenden
+     * Views (hier: ShowCarsView und EnterCarView) ab.
      *
      */
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
