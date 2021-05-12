@@ -53,8 +53,13 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
     }
 
     public void setUpUI() {
+        // Anzeige des Toggles über den Drawer
         setPrimarySection(Section.DRAWER);
+
+        // Erstellung der horizontalen Statusleiste (Header)
         addToNavbar(true, createHeaderContent());
+
+        // Erstellung der vertikalen Navigationsleiste (Drawer)
         menu = createMenu();
         addToDrawer(createDrawerContent(menu));
     }
@@ -69,7 +74,12 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
         return true;
     }
 
+    /**
+     * Erzeugung der horizontalen Leiste (Header).
+     * @return
+     */
     private Component   createHeaderContent() {
+        // Ein paar Grund-Einstellungen. Alles wird in ein horizontales Layout gesteckt.
         HorizontalLayout layout = new HorizontalLayout();
         layout.setId("header");
         layout.getThemeList().set("dark", true);
@@ -78,18 +88,20 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.setJustifyContentMode( FlexComponent.JustifyContentMode.EVENLY );
 
+        // Hinzufügen des Toogle ('Big Mac') zum Ein- und Ausschalten des Drawers
         layout.add(new DrawerToggle());
         viewTitle = new H1();
         viewTitle.setWidthFull();
         layout.add( viewTitle );
 
+        // Interner Layout
         HorizontalLayout topRightPanel = new HorizontalLayout();
         topRightPanel.setWidthFull();
         topRightPanel.setJustifyContentMode( FlexComponent.JustifyContentMode.END );
         topRightPanel.setAlignItems( FlexComponent.Alignment.CENTER );
 
-        helloUser = new H1();
         // Der Name des Users wird später reingesetzt, falls die Navigation stattfindet
+        helloUser = new H1();
         topRightPanel.add(helloUser);
 
         // Logout-Button am rechts-oberen Rand.
@@ -107,6 +119,13 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
         ui.getPage().setLocation("/");
     }
 
+    /**
+     * Hinzufügen der vertikalen Leiste (Drawer)
+     * Diese besteht aus dem Logo ganz oben links sowie den Menu-Einträgen (menu items).
+     * Die Menu Items sind zudem verlinkt zu den internen Tab-Components.
+     * @param menu
+     * @return
+     */
     private Component createDrawerContent(Tabs menu) {
         VerticalLayout layout = new VerticalLayout();
         layout.setSizeFull();
@@ -116,19 +135,31 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
         layout.setAlignItems(FlexComponent.Alignment.STRETCH);
 
         HorizontalLayout logoLayout = new HorizontalLayout();
+
+        // Hinzufügen des Logos
         logoLayout.setId("logo");
         logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         logoLayout.add(new Image("images/logo.png", "HelloCar logo"));
         logoLayout.add(new H1("HelloCar"));
+
+        // Hinzufügen des Menus inklusive der Tabs
         layout.add(logoLayout, menu);
         return layout;
     }
 
+    /**
+     * Erzeugung des Menu auf der vertikalen Leiste (Drawer)
+     * @return
+     */
     private Tabs createMenu() {
+
+        // Anlegen der Grundstruktur
         final Tabs tabs = new Tabs();
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
         tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
         tabs.setId("tabs");
+
+        // Anlegen der einzelnen Menuitems
         tabs.add(createMenuItems());
         return tabs;
     }
@@ -138,7 +169,9 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
        authorizationControl = new AuthorizationControl();
 
        // Jeder User sollte Autos sehen können, von daher wird dieser schon mal erzeugt und
-       // und dem Tabs-Array hinzugefügt
+       // und dem Tabs-Array hinzugefügt. In der Methode createTab wird ein (Key, Value)-Pair übergeben:
+        // Key: der sichtbare String des Menu-Items
+        // Value: Die UI-Component, die nach dem Klick auf das Menuitem angezeigt wird.
        Tab[] tabs = new Tab[]{ createTab( "Show Cars", ShowCarsView.class) };
 
        // Falls er Admin-Rechte hat, sollte der User auch Autos hinzufügen können
@@ -147,6 +180,9 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
            System.out.println("User is Admin!");
            tabs = Utils.append( tabs , createTab("Enter Car", EnterCarView.class)  );
        }
+
+       // ToDo für die Teams: Weitere Tabs aus ihrem Projekt hier einfügen!
+
        return tabs;
     }
 
@@ -164,7 +200,7 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
         // Falls der Benutzer nicht eingeloggt ist, dann wird er auf die Startseite gelenkt
         if ( !checkIfUserIsLoggedIn() ) return;
 
-        // Der aktuell-selektierte Tab wird gehighlighted
+        // Der aktuell-selektierte Tab wird gehighlighted.
         getTabForComponent(getContent()).ifPresent(menu::setSelectedTab);
 
         // Setzen des aktuellen Names des Tabs

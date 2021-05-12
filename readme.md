@@ -180,3 +180,12 @@ Eine ausführliche Einleitung in diese Anwendung erfolgt in einem Video-Tutorium
 [5. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=Y_s7bu1V3DU)
 <br>
 (Einführung in Maven (Default Build Lifecycle, Phasen, Goals, Plugins), POM-File; Konfiguration in IntelliJ)
+
+[6. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=kJ1tEK69CFA)
+<br>
+Einführung in das App Layout, Erklärung der View-Klasse App-Layout, Vaadin-Lifecycle 
+
+[7. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=zZQdZgjJZI8)
+<br>
+Erläuterung der Views zur Eingabe und Anzeige von Autos (FormLayout, Grid, Textfelder, Ereignis-Behandlung von Buttons, JPA (Speichern und Auslesen von Autos))
+ 

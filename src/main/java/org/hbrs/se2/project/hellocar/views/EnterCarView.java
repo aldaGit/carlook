@@ -25,7 +25,6 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 @Route(value = Globals.Pages.ENTER_CAR, layout = AppView.class)
 @PageTitle("Enter Car")
 @CssImport("./styles/views/entercar/enter-car-view.css")
-// @RouteAlias(value = "", layout = AppView.class)
 public class EnterCarView extends Div {
 
     private TextField brand = new TextField("Brand of car");
@@ -60,6 +59,7 @@ public class EnterCarView extends Div {
             // Zusätzlich wird das aktuelle UserDTO übergeben.
             UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
             carService.createCar(binder.getBean() ,  userDTO );
+
             Notification.show("Car details stored.");
             clearForm();
         });

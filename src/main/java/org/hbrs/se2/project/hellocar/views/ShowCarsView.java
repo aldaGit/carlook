@@ -34,19 +34,27 @@ import java.util.List;
 @Route(value = Globals.Pages.SHOW_CARS, layout = AppView.class)
 @PageTitle("Show Cars")
 @CssImport("./styles/views/showcars/show-cars-view.css")
-public class ShowCarsView extends Div   {
+public class ShowCarsView extends Div  {
 
     private List<CarDTO> personList;
 
     public ShowCarsView( ManageCarControl carControl ) {
             addClassName("show-cars-view");
+
+            // Auslesen alle abgespeicherten Autos aus der DB (über das Control)
             personList = carControl.readAllCars();
+
+            // Titel überhalb der Tabelle
             add(this.createTitle());
+
+            // Hinzufügen der Tabelle (bei Vaadin: ein Grid)
             add(this.createGridTable());
     }
 
     private Component createGridTable() {
         Grid<CarDTO> grid = new Grid<>();
+
+        // Befüllen der Tabelle mit den zuvor ausgelesenen Autos
         ListDataProvider<CarDTO> dataProvider = new ListDataProvider<>(
                 personList);
         grid.setDataProvider(dataProvider);
