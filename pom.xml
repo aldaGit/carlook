@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>org.hbrs.se2.project</groupId>
-    <artifactId>hellocar</artifactId>
+    <artifactId>hellocarapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hellocarapp</name>
+    <name>hellocar</name>
     <description>Demo project for SE-2</description>
     <packaging>war</packaging>
     
