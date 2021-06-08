@@ -14,6 +14,13 @@ import java.util.List;
 
 public class UserDAO {
 
+    /**
+     * Method for finding Users
+     * @param id
+     * @param password
+     * @return
+     * @throws DatabaseLayerException
+     */
     public UserDTO findUserByUseridAndPassword(String id, String password) throws DatabaseLayerException {
         ResultSet set = null;
 
