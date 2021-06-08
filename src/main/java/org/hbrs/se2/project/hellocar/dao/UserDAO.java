@@ -25,7 +25,7 @@ public class UserDAO {
         // Set ResultSet to null;
         ResultSet set = null;
 
-        // My comment
+        // Set try-clause
         try {
             Statement statement = null;
             try {
