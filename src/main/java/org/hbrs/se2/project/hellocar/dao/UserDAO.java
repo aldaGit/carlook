@@ -24,6 +24,7 @@ public class UserDAO {
     public UserDTO findUserByUseridAndPassword(String id, String password) throws DatabaseLayerException {
         ResultSet set = null;
 
+        // Set try-clause
         try {
             Statement statement = null;
             try {
