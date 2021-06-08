@@ -31,6 +31,8 @@ public class UserDAO {
                        + "WHERE carlook.user.userid = \'" + id + "\'"
                          + " AND carlook.user.password = \'" + password + "\'");
 
+            // JDBCConnection.getInstance().closeConnection();
+
         } catch (SQLException ex) {
             DatabaseLayerException e = new DatabaseLayerException("Fehler im SQL-Befehl!");
             e.setReason(Globals.Errors.SQLERROR);

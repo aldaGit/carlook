@@ -1,5 +1,7 @@
 package org.hbrs.se2.project.hellocar.views;
 
+import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
 import org.hbrs.se2.project.hellocar.control.ManageCarControl;
 import org.hbrs.se2.project.hellocar.dtos.impl.CarDTOImpl;
@@ -51,7 +53,17 @@ public class EnterCarView extends Div {
         binder.bindInstanceFields(this);
         clearForm();
 
-        cancel.addClickListener(e -> clearForm());
+        // Registrierung eines Listeners Nr. 1 (moderne Variante mit Lambda-Expression)
+        cancel.addClickListener(event -> clearForm());
+
+        // Registrierung eines Listeners Nr. 2 (traditionelle Variante mit anonymen Objekt)
+        cancel.addAttachListener( new ComponentEventListener() {
+            @Override
+            public void onComponentEvent(ComponentEvent event) {
+                clearForm();
+
+            }
+        } );
 
         save.addClickListener(e -> {
             // Speicherung der Daten über das zuhörige Control-Object.
