@@ -1,5 +1,5 @@
 package org.bonn.git.demo;
 
-// Ingos comment
+// Saschas comment
 public class DemoGit {
 }
