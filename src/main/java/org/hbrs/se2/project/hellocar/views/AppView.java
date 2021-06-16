@@ -207,7 +207,7 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
         viewTitle.setText(getCurrentPageTitle());
 
         // Setzen des Vornamens von dem aktuell eingeloggten Benutzer
-        helloUser.setText("Hello my dear old friend: "  + this.getCurrentNameOfUser() );
+        helloUser.setText("Hello my dear old friend!! "  + this.getCurrentNameOfUser() );
     }
 
     private Optional<Tab> getTabForComponent(Component component) {
