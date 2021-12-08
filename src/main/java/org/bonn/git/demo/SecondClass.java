@@ -1,5 +1,5 @@
 package org.bonn.git.demo;
 
-// My comment
+// Franzis Comment
 public class SecondClass {
 }
