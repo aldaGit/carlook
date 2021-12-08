@@ -1,5 +1,5 @@
 package org.bonn.git.demo;
 
-// Saschas new comment on this class (good one!)
+// Franziskas new comment on this class (good one!)
 public class DemoGit {
 }
