@@ -57,6 +57,7 @@ public class RegistrationView extends Div {
 
             Notification.show("Registration finished");
             clearForm();
+            UI.getCurrent().navigate(Globals.Pages.LOGIN_VIEW);
         });
     }
 
