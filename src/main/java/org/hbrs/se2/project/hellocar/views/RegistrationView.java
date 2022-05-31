@@ -30,7 +30,7 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 public class RegistrationView extends Div {
     private TextField brand = new TextField("Name");
     private TextField model = new TextField("Vorname");
-    private TextField description = new TextField("E-Mail");
+    private TextField description = new TextField("Your E-Mail");
     private TextField price = new TextField("Password");
 
     private Button register = new Button("Register");
