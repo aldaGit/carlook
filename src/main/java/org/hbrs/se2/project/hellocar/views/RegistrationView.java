@@ -28,6 +28,7 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 @PageTitle("Registration")
 @CssImport("./styles/views/entercar/enter-car-view.css")
 public class RegistrationView extends Div {
+    // ToDos: by Sascha Alda
     private TextField brand = new TextField("Name");
     private TextField model = new TextField("Vorname");
     private TextField description = new TextField("Your E-Mail");
