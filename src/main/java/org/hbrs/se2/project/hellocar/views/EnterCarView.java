@@ -27,7 +27,7 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 @Route(value = Globals.Pages.ENTER_CAR, layout = AppView.class)
 @PageTitle("Enter Car")
 @CssImport("./styles/views/entercar/enter-car-view.css")
-public class EnterCarView extends Div {
+public class EnterCarView extends Div {  // 3. Form (Spezialisierung / Vererbung)
 
     private TextField brand = new TextField("Brand of car");
     private TextField model = new TextField("Model");
@@ -48,18 +48,24 @@ public class EnterCarView extends Div {
         add(createFormLayout());
         add(createButtonLayout());
 
+        description.addValueChangeListener( event -> {
+            System.out.println("New Value: " + event.getValue() );
+
+            // Weitere Bearbeitung des aktuell eingegebenen Werts (z.B. Abfrage in Richtung DB)
+        } );
+
         // Default Mapping of Cars attributes and the names of this View based on names
         // Source: https://vaadin.com/docs/flow/binding-data/tutorial-flow-components-binder-beans.html
-        binder.bindInstanceFields(this);
+        binder.bindInstanceFields(this); // Nr. 1 HOOK / API-Methode
         clearForm();
 
         // Registrierung eines Listeners Nr. 1 (moderne Variante mit Lambda-Expression)
         cancel.addClickListener(event -> clearForm());
 
         // Registrierung eines Listeners Nr. 2 (traditionelle Variante mit anonymen Objekt)
-        cancel.addAttachListener( new ComponentEventListener() {
+        cancel.addClickListener( new ComponentEventListener() {
             @Override
-            public void onComponentEvent(ComponentEvent event) {
+            public void onComponentEvent(ComponentEvent event) { // Nr. 2 Callback!!
                 clearForm();
 
             }
