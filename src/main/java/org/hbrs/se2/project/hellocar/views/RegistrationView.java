@@ -25,6 +25,7 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 public class RegistrationView extends Div {
 
     // ToDo: Variablennamen umbenennen, weitere Interaktionsfelder hinzufügen
+    // c / o by Sascha Alda and Team Gibralda
     private TextField brand = new TextField("Vorname");
     private TextField model = new TextField("Nachname");
     private TextField description = new TextField("MatrikelNummer");
