@@ -28,7 +28,7 @@ public class RegistrationView extends Div {
     // c / o by Sascha Alda and Team Gibralda
     private TextField brand = new TextField("Vorname");
     private TextField model = new TextField("Nachname");
-    private TextField description = new TextField("MatrikelNummer");
+    private TextField description = new TextField("Ihre MatrikelNummer");
     private TextField price = new TextField("Password");
 
     private Button register = new Button("Register");
