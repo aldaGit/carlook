@@ -7,9 +7,6 @@ import org.hbrs.se2.project.hellocar.dtos.impl.CarDTOImpl;
 import org.hbrs.se2.project.hellocar.dtos.UserDTO;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.customfield.CustomField;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
@@ -27,17 +24,18 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 @CssImport("./styles/views/entercar/enter-car-view.css")
 public class RegistrationView extends Div {
 
-    // ToDo: Variablen anpassen!
-    private TextField brand = new TextField("E-Mail");
-    private TextField model = new TextField("Password");
-    private TextField description = new TextField("Vorname");
-    private TextField price = new TextField("Nutzername");
+    // ToDo: Variablennamen umbenennen, weitere Interaktionsfelder hinzufügen
+    // c / o by Sascha Alda and Team Gibralda
+    private TextField brand = new TextField("Vorname");
+    private TextField model = new TextField("Nachname");
+    private TextField description = new TextField("MatrikelNummer");
+    private TextField price = new TextField("Password");
 
     private Button register = new Button("Register");
 
     private Binder<CarDTOImpl> binder = new Binder(CarDTOImpl.class);
 
-    public RegistrationView(ManageCarControl carService) {
+    public RegistrationView( ManageCarControl carService ) {
         addClassName("enter-car-view");
 
         add(createTitle());
@@ -54,14 +52,16 @@ public class RegistrationView extends Div {
             // Daten des Autos werden aus Formular erfasst und als DTO übergeben.
             // Zusätzlich wird das aktuelle UserDTO übergeben.
             // UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
-            // carService.createCar(binder.getBean() ,  userDTO );
+            // carService.createCar( binder.getBean() ,  userDTO );
 
-            // ToDo: Entwicklung: RegistrationControl; UserDTO (für Registrierung); Binding;
+            // ToDo: Implementierung von: RegistrationControl; UserDTO (für Registrierung);  Binder;
 
-            // Alternative zu Binding: description.getValue(); --> einsetzen in ein UserDTO!
+            // Alternative für Binder: this.description.getValue()  --> Einsetzen in das DTO
 
-            Notification.show("Registration erfolgreich");
+            Notification.show("Registrierung erfolgreich");
             clearForm();
+
+            // Navigation laut Page Flow
             UI.getCurrent().navigate(Globals.Pages.LOGIN_VIEW);
         });
     }
@@ -71,7 +71,7 @@ public class RegistrationView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("Registrierung");
+        return new H3("Student Registration");
     }
 
     private Component createFormLayout() {
@@ -87,4 +87,5 @@ public class RegistrationView extends Div {
         buttonLayout.add(register);
         return buttonLayout;
     }
+
 }
