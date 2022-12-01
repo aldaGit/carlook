@@ -38,7 +38,7 @@ public class RoundTripTest {
         // Da die ID auto-generiert wurde, müssen wir uns die erzeugte ID nach dem Abspeichern merken:
         int idTmp = user.getId();
 
-        // Schritt 2: R = Read (hier: Auslesen über die Methode find()
+        // Schritt 2: R = Read (hier: Auslesen über die Methode find()ById
         Optional<User> wrapper = userRepository.findById( idTmp );
         User userAfterCreate = null;
         if ( wrapper.isPresent() ) {
