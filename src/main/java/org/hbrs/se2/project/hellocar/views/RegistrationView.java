@@ -30,6 +30,7 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Vererbung)
 
     // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
+    // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
     private TextField brand = new TextField("UserName");
     private TextField model = new TextField("E-Mail");
     private TextField description = new TextField("Passwort");
