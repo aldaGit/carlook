@@ -29,19 +29,20 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 @CssImport("./styles/views/entercar/enter-car-view.css")
 public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Vererbung)
 
-    // ToDo: Namen der Variablen ändern, neue hinzufügen; Validierung (...)
-    private TextField brand = new TextField("E-Mail");
-    private TextField model = new TextField("Name");
-    private TextField description = new TextField("Vorname");
-    private TextField price = new TextField("Password");
+    // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
+    // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
+    private TextField brand = new TextField("UserName");
+    private TextField model = new TextField("E-Mail");
+    private TextField description = new TextField("Passwort");
+    private TextField price = new TextField("Passwort (Wdh)");
 
     private Button register = new Button("Register");
 
     private Binder<CarDTOImpl> binder = new Binder(CarDTOImpl.class);
 
-    public RegistrationView(ManageCarControl carService) {
+    public RegistrationView( ManageCarControl carService) {
+        //ToDo: RegistrationControl; UserDTO, Binding; ExceptionHandling;
 
-        // ToDo: neues DTO (z.B. RegistrationDTO); neuer Control (RegControl); Binder; Excpetion Handling
         addClassName("enter-car-view");
 
         add(createTitle());
@@ -60,11 +61,11 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
             // UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
             // carService.createCar(binder.getBean() ,  userDTO );
 
-            Notification.show("Benutzer wurde registriert.");
+            Notification.show("User wurde registriert.");
             clearForm();
 
             // Navigation
-            UI.getCurrent().navigate(Globals.Pages.LOGIN_VIEW);
+            UI.getCurrent().navigate( Globals.Pages.LOGIN_VIEW );
         });
     }
 
@@ -90,6 +91,48 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
         return buttonLayout;
     }
 
+    private static class PhoneNumberField extends CustomField<String> {
+        private ComboBox<String> countryCode = new ComboBox<>();
+        private TextField number = new TextField();
 
+        public PhoneNumberField(String label) {
+            setLabel(label);
+            countryCode.setWidth("120px");
+            countryCode.setPlaceholder("Country");
+            countryCode.setPattern("\\+\\d*");
+            countryCode.setPreventInvalidInput(true);
+            countryCode.setItems("+354", "+91", "+62", "+98", "+964", "+353", "+44", "+972", "+39", "+225");
+            countryCode.addCustomValueSetListener(e -> countryCode.setValue(e.getDetail()));
+            number.setPattern("\\d*");
+            number.setPreventInvalidInput(true);
+            HorizontalLayout layout = new HorizontalLayout(countryCode, number);
+            layout.setFlexGrow(1.0, number);
+            add(layout);
+        }
+
+        @Override
+        protected String generateModelValue() {
+            if (countryCode.getValue() != null && number.getValue() != null) {
+                String s = countryCode.getValue() + " " + number.getValue();
+                return s;
+            }
+            return "";
+        }
+
+        @Override
+        protected void setPresentationValue(String phoneNumber) {
+            String[] parts = phoneNumber != null ? phoneNumber.split(" ", 2) : new String[0];
+            if (parts.length == 1) {
+                countryCode.clear();
+                number.setValue(parts[0]);
+            } else if (parts.length == 2) {
+                countryCode.setValue(parts[0]);
+                number.setValue(parts[1]);
+            } else {
+                countryCode.clear();
+                number.clear();
+            }
+        }
+    }
 
 }
