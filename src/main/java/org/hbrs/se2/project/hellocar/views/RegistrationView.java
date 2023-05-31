@@ -1,12 +1,17 @@
 package org.hbrs.se2.project.hellocar.views;
 
-import com.vaadin.flow.component.*;
-import com.vaadin.flow.component.select.Select;
+import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.UI;
 import org.hbrs.se2.project.hellocar.control.ManageCarControl;
 import org.hbrs.se2.project.hellocar.dtos.impl.CarDTOImpl;
 import org.hbrs.se2.project.hellocar.dtos.UserDTO;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.customfield.CustomField;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
@@ -20,22 +25,23 @@ import com.vaadin.flow.router.Route;
 import org.hbrs.se2.project.hellocar.util.Globals;
 
 @Route(value = "registration" )
-@PageTitle("Registration")
+@PageTitle("User Registration")
 @CssImport("./styles/views/entercar/enter-car-view.css")
-public class RegistrationView extends Div {
+public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Vererbung)
 
-    // ToDo: Variablennamen umbenennen, weitere Interaktionsfelder hinzufügen
-    // c / o by Sascha Alda and Team Gibralda
-    private TextField brand = new TextField("Vorname");
-    private TextField model = new TextField("Nachname");
-    private TextField description = new TextField("Ihre MatrikelNummer");
+    // ToDo: Namen der Variablen ändern, neue hinzufügen; Validierung (...)
+    private TextField brand = new TextField("E-Mail");
+    private TextField model = new TextField("Name");
+    private TextField description = new TextField("Vorname");
     private TextField price = new TextField("Password");
 
     private Button register = new Button("Register");
 
     private Binder<CarDTOImpl> binder = new Binder(CarDTOImpl.class);
 
-    public RegistrationView( ManageCarControl carService ) {
+    public RegistrationView(ManageCarControl carService) {
+
+        // ToDo: neues DTO (z.B. RegistrationDTO); neuer Control (RegControl); Binder; Excpetion Handling
         addClassName("enter-car-view");
 
         add(createTitle());
@@ -44,7 +50,7 @@ public class RegistrationView extends Div {
 
         // Default Mapping of Cars attributes and the names of this View based on names
         // Source: https://vaadin.com/docs/flow/binding-data/tutorial-flow-components-binder-beans.html
-        binder.bindInstanceFields(this);
+        binder.bindInstanceFields(this); // Nr. 1 API-Methode
         clearForm();
 
         register.addClickListener(e -> {
@@ -52,16 +58,12 @@ public class RegistrationView extends Div {
             // Daten des Autos werden aus Formular erfasst und als DTO übergeben.
             // Zusätzlich wird das aktuelle UserDTO übergeben.
             // UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
-            // carService.createCar( binder.getBean() ,  userDTO );
+            // carService.createCar(binder.getBean() ,  userDTO );
 
-            // ToDo: Implementierung von: RegistrationControl; UserDTO (für Registrierung);  Binder;
-
-            // Alternative für Binder: this.description.getValue()  --> Einsetzen in das DTO
-
-            Notification.show("Registrierung erfolgreich");
+            Notification.show("Benutzer wurde registriert.");
             clearForm();
 
-            // Navigation laut Page Flow
+            // Navigation
             UI.getCurrent().navigate(Globals.Pages.LOGIN_VIEW);
         });
     }
@@ -71,7 +73,7 @@ public class RegistrationView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("Student Registration");
+        return new H3("User Registration");
     }
 
     private Component createFormLayout() {
@@ -87,5 +89,7 @@ public class RegistrationView extends Div {
         buttonLayout.add(register);
         return buttonLayout;
     }
+
+
 
 }
