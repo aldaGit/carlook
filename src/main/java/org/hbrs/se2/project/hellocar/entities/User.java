@@ -1,7 +1,15 @@
 package org.hbrs.se2.project.hellocar.entities;
 
-import javax.persistence.*;
-// import java.sql.Date;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -132,12 +140,18 @@ public class User {
         return Objects.hash(id, dateOfBirth, email, firstName, lastName, occupation, password, phone, userid);
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_to_rolle", catalog = "demouser",
-            schema = "carlook",
-            joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "bezeichnung", referencedColumnName = "bezeichhnung", nullable = false))
-    public List<Rolle> getRoles() {
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "user_to_rolle",
+      catalog = "demouser",
+      schema = "carlook",
+      joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id", nullable = false),
+      inverseJoinColumns =
+          @JoinColumn(
+              name = "bezeichnung",
+              referencedColumnName = "bezeichhnung",
+              nullable = false))
+  public List<Rolle> getRoles() {
         return roles;
     }
 

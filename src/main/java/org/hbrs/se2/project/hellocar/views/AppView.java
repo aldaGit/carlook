@@ -34,7 +34,6 @@ import java.util.Optional;
  */
 @CssImport("./styles/views/main/main-view.css")
 @Route("main")
-@PWA(name = "HelloCar", shortName = "HelloCar", enableInstallPrompt = false)
 @JsModule("./styles/shared-styles.js")
 public class AppView extends AppLayout implements BeforeEnterObserver {
 
