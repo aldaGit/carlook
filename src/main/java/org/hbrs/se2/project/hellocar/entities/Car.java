@@ -1,9 +1,15 @@
 package org.hbrs.se2.project.hellocar.entities;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.persistence.GeneratedValue;
+
+import jakarta.annotation.Generated;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table( name ="car" , schema = "carlook" )
