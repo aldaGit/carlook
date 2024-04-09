@@ -19,7 +19,7 @@ Nach erfolgreichem Login können auf der personalisierten Startseite auf der lin
 verschiedenen Tabs ausgewählt werden. Jeder Tab repräsentiert einen Anwendungsfall. Auf der horizontalen Navigationsleiste
 wird der Name des Benutzers angezeigt. Zudem kann ein User sich ausloggen.
 
-Die Anwendung wurde mit Hilfe der Frameworks [Vaadin 14](https://vaadin.com/) und [Spring Boot](https://spring.io/projects/spring-boot) entwickelt.
+Die Anwendung wurde mit Hilfe der Frameworks [Vaadin 24](https://vaadin.com/) und [Spring Boot](https://spring.io/projects/spring-boot) entwickelt.
 Für die Datenbankanbindung wurde der Standard JPA (Java Persistence API) verwendet, der wiederum auf JDBC aufbaut. Die Anwendung
 kann als ein Framework für eigene Entwicklungen (z.B. SE-2 Semesterprojekt )angesehen und (gerne) verwendet werden.   
 
@@ -32,7 +32,7 @@ https://ux-2s18.inf.h-brs.de/faq/vpn
 
 (Login ist notwendig, da sich die Seite auf unserem Intranet finden)
 
-Der Download der Source erfolgt über GitHub:
+Der Download der Source erfolgt über das hochschul-interne GitLab, es wird jedem Team ein eigenes GitLab-Repository bereitgestellt. Ein öffentliche Version der Carlook-Anwendung finden Sie hier:
 https://github.com/aldaGit/carlook 
 
 In IntelliJ kann aus dem Repository ein neues Projekt direkt erzeugt werden (File --> New --> Project from VersionControl --> Git).
@@ -58,7 +58,9 @@ User 'Ingo' (Einfacher User):
 - Password: abc
 
 ### Tipps und Tricks 
-Die Java 11 JDK kann [hier](https://www.oracle.com/de/java/technologies/javase-jdk11-downloads.html) als .zip heruntergeladen werden (u.U. muss ein kostenloser Oracle-Account erstellt werden). JDK entpacken, an gewünschtem Ort ablegen und in Intellij unter File>Project Structure auf den Button 'New' klicken und auf '+JDK'. Dann den entpackten JDK-11-Ordner auswählen. 
+Für die Anwendung wird ein SDK Version 19 benötigt. Dies kann über die IDE IntelliJ installiert werden: <br>
+https://www.jetbrains.com/help/idea/sdk.html
+
 <br>
 Wenn spring-boot:run fehlschlägt/ die Anwendung unter localhost:8080 nicht zu erreichen ist: 
   * Fehler anzeigen: Im Run-Tab am unteren Rand der Anwendung, im linken Bereich auf den vorletzten Eintrag im Menü-Baum mit den roten Ausrufezeichen auf "run" klicken
@@ -72,7 +74,6 @@ Wenn spring-boot:run fehlschlägt/ die Anwendung unter localhost:8080 nicht zu e
 Diese Links soll eine Unterstützung bieten bei der prototypischen Umsetzung des Semesterprojekts mit den Frameworks
 Vaadin und Spring Boot sowie mit Spring / JPA. Diese Links werden sporadisch erweitert, es lohnt sich also, dieses
 Readme regelmäßig zu aktualisieren (git pull). 
-
 
 #### Überblick über CSS
 Das Thema CSS wird in der Vorlesung nur am Rande eingeführt. Dennoch sollten die Teams sich bemühen, ihre Software
@@ -112,12 +113,11 @@ Hier eine gute Zusammenfassung mit einigen Fallstricken:
 https://nanofaroque.medium.com/nullpointerexception-resolution-in-spring-autowiring-9db09aefcab
 
 #### Vaadin
-Eine gute Einführung in Vaadin bietet die [offizielle Dokumentation von Vaadin](https://vaadin.com/). In der Vorlesung wird Vaadin 14 
-verwendet. Ein Überblick über die aktuellen Versionen gibt es hier:<br>
-https://vaadin.com/start#tech-stack-examples
+Eine gute Einführung in Vaadin bietet die offizielle Dokumentation von Vaadin:<br>
+https://vaadin.com/ 
 
-Ein gutes Tutorial mit den grundlegenden Features von Vaadin (Flow) 14:<br>
-https://vaadin.com/docs/v14/flow/overview
+Ein gutes Tutorial mit den grundlegenden Features von Vaadin (Flow) 24:<br>
+https://vaadin.com/docs/latest/guide/quick-start
 
 Hier ein guter Überblick über die UI-Components, die man verwenden kann:<br>
 https://vaadin.com/components
@@ -126,18 +126,18 @@ Vaadin bietet über die Technologie "Flow" die Möglichkeit an, eine Web-Anwendu
 Diese Variante wird in der Vorlesung SE-2 (BWI) eingeführt und verwendet. Ein guter Überblick:<br>
 https://vaadin.com/flow
 
-Die kommerziellen Produkte zu Vaadin (u.a. den [Vaadin Designer](https://vaadin.com/designer), [Pro Components](https://vaadin.com/components/vaadin-board)) erhalten sie über eine Lizenz, die allerdin
+Die kommerziellen Produkte zu Vaadin (u.a. den [Vaadin Designer](https://vaadin.com/designer), [Pro Components](https://vaadin.com/components/vaadin-board)) erhalten sie über eine Lizenz, die allerdings
 sehr teuer ist. Als Student erhalten sie jedoch einen freien Zugang, den es sich lohnt anzuschauen:<br>
 https://vaadin.com/student-program
 
 In der offiziellen Abgabe des Semesterprojekt sind allerdings nur die freien UI-Components zu verwenden! 
 
 Der Web-Designer bietet die Möglichkeit, eine Web-Anwendung flexibel in einem Browser zusammenzubauen und zu konfigurieren. 
-Im Anschluss kann die Anwendung als "Rumpf" heruntergeladen werden:<br>
+Im Anschluss kann die Anwendung als "Rumpf" heruntergeladen werden. Diese Seite nur für die ersten Versuche verwenden.<br>
 https://start.vaadin.com/
 
 Der Router-Mechanismus wird verwendet, um zwischen diversen Views zu navigieren. Eine Einleitung dazu gibt es hier:<br>
-https://vaadin.com/docs/v14/flow/routing/tutorial-router-layout.html
+https://vaadin.com/docs/latest/routing
 
 Bei der Ausführung bzw. Start eines Tomcat-Servers kann es passieren, dass der Netzwerk-Port schon belegt ist mit einer
 laufnenden Instanz. Dann sollte man diese Instanz löschen, eine Anleitung gibt es hier:<br>
@@ -146,14 +146,12 @@ https://stackoverflow.com/questions/20735205/launching-spring-application-addres
 Sie brauchen einen Dialog z.B. zur Bestätigung einer Aktion über Buttons? Dann schauen sie sich mal Dialogs an:<br>
 https://vaadin.com/components/vaadin-dialog 
 
-
 #### PostgreSQL
 Eine Übersicht über die implementierten SQL-Befehle bei PostgreSQL gibt es hier:<br>
 https://www.postgresql.org/docs/12/sql-commands.html
 
 Ein gutes Web-Tool zur Erstellung von Tabellen, Schemas usw. ist das Tool PhpPGAdmin. Dieses ist bei uns auch 
-betrieben, jedes Team bekommt dazu einen eigenen Zugriff (Login, Password). Dazu bitte eine E-Mail schreiben an mich 
-(sascha.alda@h-brs.de). Link dazu:<br>
+betrieben, jedes Team bekommt dazu einen eigenen Zugriff (Login, Password). Dazu bitte eine E-Mail schreiben an Luca Ringhausen. Link dazu:<br>
 https://dumbo.inf.h-brs.de/phppgadmin/
 
 Hinweis: der Zugriff auf die Datenbank ist nur mit einer gültigen VPN-Verbindung möglich!
@@ -163,7 +161,9 @@ Eine ausführliche Einleitung in diese Anwendung erfolgt in einem Video-Tutorium
 
 [1. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=XnvjqxhCxA0)
 <br>
-(Installation der Anwendung aus GitHub; Demo der Anwendung; erste Einführung Maven Goals und Plugins)
+(Installation der Anwendung aus GitHub; Demo der Anwendung; erste Einführung Maven Goals und Plugins)<br>
+<i>Update 2024</i>: Der Clone der Anwendung erfolgt über ein GitLab-Repository, dieses wird Ihnen zugeschickt nach einer erfolgreichen Registrierung Ihres Teams!
+Bitte als Java SDK die Version 19 auswählen! Der Start der Anwendung dauert mittlerweile nur noch wenige Sekunden.
 
 [2. Teil Vaadin-Tutorial](https://www.youtube.com/watch?v=-Zev_pxh_po)
 <br>
