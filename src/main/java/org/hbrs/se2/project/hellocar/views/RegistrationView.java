@@ -32,7 +32,7 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
     // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
     // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
     private TextField brand = new TextField("UserName");
-    private TextField model = new TextField("E-Mail");
+    private TextField model = new TextField("My E-Mail");
     private TextField description = new TextField("Passwort");
     private TextField price = new TextField("Passwort (Wdh)");
 
