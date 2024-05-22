@@ -32,7 +32,7 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
     // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
     // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
     private TextField brand = new TextField("UserName");
-    private TextField model = new TextField("E-Mail");
+    private TextField model = new TextField("My E-Mail");
     private TextField description = new TextField("Passwort");
     private TextField price = new TextField("Passwort (Wdh)");
 
@@ -58,8 +58,8 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
             // Speicherung der Daten über das zuhörige Control-Object.
             // Daten des Autos werden aus Formular erfasst und als DTO übergeben.
             // Zusätzlich wird das aktuelle UserDTO übergeben.
-            // UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
-            // carService.createCar(binder.getBean() ,  userDTO );
+            UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
+            carService.createCar(binder.getBean() ,  userDTO );
 
             Notification.show("User wurde registriert.");
             clearForm();
