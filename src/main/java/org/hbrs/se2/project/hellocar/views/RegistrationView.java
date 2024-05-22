@@ -41,7 +41,7 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
     private Binder<CarDTOImpl> binder = new Binder(CarDTOImpl.class);
 
     public RegistrationView( ManageCarControl carService) {
-        //ToDo: RegistrationControl; UserDTO, Binding; ExceptionHandling;
+        //ToDo: tba
 
         addClassName("enter-car-view");
 
@@ -58,8 +58,8 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
             // Speicherung der Daten über das zuhörige Control-Object.
             // Daten des Autos werden aus Formular erfasst und als DTO übergeben.
             // Zusätzlich wird das aktuelle UserDTO übergeben.
-            UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
-            carService.createCar(binder.getBean() ,  userDTO );
+            // UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
+            // carService.createCar(binder.getBean() ,  userDTO );
 
             Notification.show("User wurde registriert.");
             clearForm();
