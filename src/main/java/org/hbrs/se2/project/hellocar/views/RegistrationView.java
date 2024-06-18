@@ -25,14 +25,14 @@ import com.vaadin.flow.router.Route;
 import org.hbrs.se2.project.hellocar.util.Globals;
 
 @Route(value = "registration" )
-@PageTitle("Fancy User Registration")
+@PageTitle("User Registration")
 @CssImport("./styles/views/entercar/enter-car-view.css")
 public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Vererbung)
 
     // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
     // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
-    private TextField brand = new TextField("First Name");
-    private TextField model = new TextField("Your Mail");
+    private TextField brand = new TextField("Your First Name");
+    private TextField model = new TextField("Standard Mail");
     private TextField description = new TextField("Passwort");
     private TextField price = new TextField("Passwort (Wdh)");
 
