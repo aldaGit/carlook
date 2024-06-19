@@ -31,8 +31,8 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
 
     // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
     // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
-    private TextField brand = new TextField("Your First Name");
-    private TextField model = new TextField("Standard Mail");
+    private TextField brand = new TextField("UserName");
+    private TextField model = new TextField("My preferred E-Mail");
     private TextField description = new TextField("Passwort");
     private TextField price = new TextField("Passwort (Wdh)");
 
@@ -40,8 +40,8 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
 
     private Binder<CarDTOImpl> binder = new Binder(CarDTOImpl.class);
 
-    public RegistrationView( ManageCarControl carService ) {
-        //ToDo: UserDTO implementieren; UserRegistration anstelle von ManageCar
+    public RegistrationView( ManageCarControl carService) {
+        //ToDo: UserDTO implementieren und binden; ManageUserControl
 
         addClassName("enter-car-view");
 
@@ -54,13 +54,14 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
         binder.bindInstanceFields(this); // Nr. 1 API-Methode
         clearForm();
 
-        // Muster / Design Pattern: Observer (GoF)
+        // Pattern: Observer Pattern (GoF)
         register.addClickListener(e -> {
             // Speicherung der Daten über das zuhörige Control-Object.
             // Daten des Autos werden aus Formular erfasst und als DTO übergeben.
             // Zusätzlich wird das aktuelle UserDTO übergeben.
-            // UserDTO userDTO = (UserDTO) UI.getCurrent().getSession().getAttribute(Globals.CURRENT_USER);
-            // carService.createCar(binder.getBean() ,  userDTO );
+            UserDTO userDTO = (UserDTO) UI.getCurrent().
+                    getSession().getAttribute(Globals.CURRENT_USER);
+            carService.createCar(binder.getBean() ,  userDTO );
 
             Notification.show("User wurde registriert.");
             clearForm();
