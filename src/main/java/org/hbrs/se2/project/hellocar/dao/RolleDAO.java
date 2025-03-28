@@ -36,7 +36,7 @@ public class RolleDAO {
 
         } catch (SQLException ex) {
 
-            throw new DatabaseLayerException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen!");
+            throw new DatabaseLayerException("Fehler im SQL-Befehl! Bitte den Programmierer:in benachrichtigen!");
         }
 
         if ( set == null ) return null;
@@ -49,12 +49,12 @@ public class RolleDAO {
 
                 role = new RolleDTOImpl();
                 // Object Relation Mapping (ORM)
-                role.setBezeichnung(set.getString(2) );
+                role.setBezeichnung(set.getString("bezeichnung") );
                 liste.add(role);
 
             }
         } catch (SQLException ex) {
-            throw new DatabaseLayerException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen!");
+            throw new DatabaseLayerException("Fehler im SQL-Befehl! Bitte den Programmierer:in benachrichtigen!");
         }
         return liste;
 
