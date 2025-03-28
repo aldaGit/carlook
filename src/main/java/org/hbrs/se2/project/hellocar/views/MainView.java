@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RouteAlias(value = "login")
 public class MainView extends VerticalLayout {
 
+    // Default: Einfügung des LoginControl-Objekts als Singleton (Spring-Annotation)
+    // Frage: Gibt es hier vielleicht Probleme ... ?
     @Autowired
     private LoginControl loginControl;
 
