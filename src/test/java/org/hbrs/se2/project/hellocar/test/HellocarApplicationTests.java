@@ -117,7 +117,7 @@ class HellocarApplicationTests {
             System.out.println("Price: " + item.getPrice() );
             System.out.println("Phone: " + item.getPhone() );
         }
-        // Todo: Definition von passenden Assertions
+        // Todo: Definition von passenden Assertions (z.B. Anzahl der Autos)
     }
 
     @Test
