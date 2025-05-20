@@ -101,6 +101,7 @@ public class AppView extends AppLayout implements BeforeEnterObserver {
 
         // Der Name des Users wird später reingesetzt, falls die Navigation stattfindet
         helloUser = new H1();
+        helloUser.setId("helloUser_ID");
         topRightPanel.add(helloUser);
 
         // Logout-Button am rechts-oberen Rand.
