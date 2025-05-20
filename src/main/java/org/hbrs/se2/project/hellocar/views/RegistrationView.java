@@ -27,7 +27,7 @@ import org.hbrs.se2.project.hellocar.util.Globals;
 @Route(value = "registration" )
 @PageTitle("User Registration")
 @CssImport("./styles/views/entercar/enter-car-view.css")
-public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Vererbung)
+public class RegistrationView extends Div {
 
     // ToDo: Validierung; weitere Felder / Varibalen; Variablen umbenennen.
     // c / 0 Sascha Alda in Kooperation mit dem Team NoCode
@@ -51,7 +51,7 @@ public class RegistrationView extends Div {  // 3. Form (Spezialisierung / Verer
 
         // Default Mapping of Cars attributes and the names of this View based on names
         // Source: https://vaadin.com/docs/flow/binding-data/tutorial-flow-components-binder-beans.html
-        binder.bindInstanceFields(this); // Nr. 1 API-Methode
+        binder.bindInstanceFields(this);
         clearForm();
 
         // Pattern: Observer Pattern (GoF)
