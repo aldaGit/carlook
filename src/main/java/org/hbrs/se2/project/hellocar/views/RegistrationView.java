@@ -76,7 +76,7 @@ public class RegistrationView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("User Registration");
+        return new H3("My User Registration");
     }
 
     private Component createFormLayout() {
