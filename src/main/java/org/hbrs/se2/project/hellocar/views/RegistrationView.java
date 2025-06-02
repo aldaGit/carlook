@@ -35,6 +35,7 @@ public class RegistrationView extends Div {
     private TextField model = new TextField("My preferred E-Mail");
     private TextField description = new TextField("Passwort");
     private TextField price = new TextField("Passwort (Wdh)");
+    private TextField address = new TextField("Address");
 
     private Button register = new Button("Register");
 
@@ -76,12 +77,12 @@ public class RegistrationView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("My User Registration");
+        return new H3("New User Registration");
     }
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        formLayout.add(brand, model, description, price);
+        formLayout.add(brand, model, description, price, address);
         return formLayout;
     }
 
