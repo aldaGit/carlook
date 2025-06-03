@@ -34,7 +34,7 @@ public class RegistrationView extends Div {
     private TextField brand = new TextField("UserName");
     private TextField model = new TextField("My preferred E-Mail");
     private TextField description = new TextField("Passwort");
-    private TextField price = new TextField("Passwort (Wdh)");
+    private TextField price = new TextField("Passwort (Wdh-Holung)");
     private TextField address = new TextField("Address");
 
     private Button register = new Button("Register");
