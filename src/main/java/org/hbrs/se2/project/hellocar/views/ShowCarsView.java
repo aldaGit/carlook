@@ -2,7 +2,9 @@ package org.hbrs.se2.project.hellocar.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Div;
@@ -15,6 +17,8 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.apache.commons.lang3.StringUtils;
+import org.hbrs.se2.project.hellocar.control.ChatControl;
+import org.hbrs.se2.project.hellocar.control.LoginControl;
 import org.hbrs.se2.project.hellocar.control.ManageCarControl;
 import org.hbrs.se2.project.hellocar.dtos.CarDTO;
 import org.hbrs.se2.project.hellocar.dtos.UserDTO;
@@ -38,8 +42,12 @@ public class ShowCarsView extends Div  {
 
     private List<CarDTO> personList;
 
-    public ShowCarsView( ManageCarControl carControl ) {
+    private ChatView chatView;
+
+    public ShowCarsView(ManageCarControl carControl, ChatControl  chatControl, LoginControl loginControl) {
             addClassName("show-cars-view");
+
+            this.chatView = new ChatView(chatControl, loginControl);
 
             // Auslesen alle abgespeicherten Autos aus der DB (über das Control)
             personList = carControl.readAllCars();
@@ -49,6 +57,8 @@ public class ShowCarsView extends Div  {
 
             // Hinzufügen der Tabelle (bei Vaadin: ein Grid)
             add(this.createGridTable());
+
+            add(this.createChatbotAvatar());
     }
 
     private Component createGridTable() {
@@ -103,5 +113,18 @@ public class ShowCarsView extends Div  {
         return new H3("Search for Cars");
     }
 
+    private Component createChatbotAvatar(){
+        Avatar chatbotAvatar = new Avatar();
+        chatbotAvatar.setId("chatbot-avatar");
+        chatbotAvatar.setImage("images/logo.png");
+
+        chatbotAvatar.getStyle().set("position", "absolute");
+        chatbotAvatar.getStyle().set("bottom", "20px");
+        chatbotAvatar.getStyle().set("right", "30px");
+
+        chatbotAvatar.getElement().addEventListener("click", event -> {chatView.open();});
+
+        return chatbotAvatar;
+    }
 
 };

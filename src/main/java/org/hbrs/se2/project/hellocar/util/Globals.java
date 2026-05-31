@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 
 public class Globals {
     public static String CURRENT_USER = "current_User";
+    public static String CHAT_HISTORY = "chat_History";
 
     public static class Pages {
         public static final String SHOW_CARS = "show";
