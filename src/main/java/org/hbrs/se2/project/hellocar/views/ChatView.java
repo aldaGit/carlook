@@ -153,7 +153,7 @@ public class ChatView extends Dialog {
         String value = textField.getValue().trim();
 
         if (value.isEmpty()) {
-            Notification.show("Please enter a message!").addThemeVariants(NotificationVariant.LUMO_ERROR);
+            Notification.show("Bitte gib eine Nachricht ein!").addThemeVariants(NotificationVariant.LUMO_ERROR);
             return;
         }
         try {
@@ -165,7 +165,7 @@ public class ChatView extends Dialog {
             }
 
         } catch(RuntimeException e) {
-            Notification.show("Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut oder überprüfe deine Einstellungen").addThemeVariants(NotificationVariant.LUMO_ERROR);
+            Notification.show("Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut").addThemeVariants(NotificationVariant.LUMO_ERROR);
             System.out.println("KIConnect API Request failed! "+ e.getMessage());
         }
     }

@@ -21,6 +21,9 @@ public class AIService {
     @Value("${kiconnect.api.url}")
     private String apiUrl;
 
+    @Value("${kiconnect.model}")
+    private String model;
+
     private RestTemplate restTemplate = new RestTemplate();
 
     public String sendMessageAndGetResponse(List<Map<String, String>> chatHistory) {
@@ -49,7 +52,7 @@ public class AIService {
     private String buildPayload(List<Map<String, String>> chatHistory) {
         try {
             Map<String, Object> payload = Map.of(
-                    "model", "LLAMA 3.1 8B",
+                    "model", model,
                     "messages", chatHistory
             );
 
